@@ -15,23 +15,9 @@ let arrayOfTodos = [
 }]
 
 const fetchTodos = () => {
-  fetch('')
-  .then((response)=> {
-    return stuff
-  })
-  .then((data)=> {
-
-  })
-
     fetch('https://jsonplaceholder.typicode.com/todos')
-    .then( (response) => {
-      console.log('response:', response)
-      return response.json()
-    })
-    .then( (json) => {
-      console.log('json:', json)
-      arrayOfTodos = json
-    })
+    .then( (response) => response.json())
+    .then( (json) => arrayOfTodos = json)
 }
 
 
@@ -40,19 +26,35 @@ const logTodos = () => {
 }
 const populateTodos = () => {
   // get OL element from HTML page
+  let orderedListElement = document.querySelector('#todo-list')
   // loop thru arrayOfTodos
-  // inside loop
+  for (let index = 0; index < arrayOfTodos.length; index++) {
+    // individual todo item in arrayOfTodos array
+    const todo = arrayOfTodos[index];
     //create LI element
+    const listItem = document.createElement('li')
     //create text using the title of each obj in the array
+    const text = document.createTextNode(todo.title)
     // append text to LI element
+    listItem.appendChild(text)
     // append LI element to  OL element
+    orderedListElement.appendChild(listItem)
+  }
 }
-const populateTodosWalkThru = () => {
-    let firstUser = arrayOfTodos[0]
-    console.log('firstUser:', firstUser.completed)
+const populateTodosStyled = () => {
+    // get OL element from HTML page
+    let parentElement = document.querySelector('.checkList')
+    // loop thru arrayOfTodos
     for (let index = 0; index < arrayOfTodos.length; index++) {
+      // individual todo item in arrayOfTodos array
       const todo = arrayOfTodos[index];
-      console.log('todo:', todo)
+      // create element template using template strings
+      let checklist = `
+        <div class="checkList-container">
+          <input type="checkbox" checked="${todo.completed}">
+          <label>${todo.title}</label>
+        </div>
+      `
+      parentElement.insertAdjacentHTML('beforeend', checklist);
     }
-     
 }
