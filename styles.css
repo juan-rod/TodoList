@@ -1,3 +1,19 @@
 .checkList-container {
   display: flex;
 }
+.lineThrough {
+  text-decoration: line-through;
+}
+li {
+  display: flex;
+  font-size: 18px;
+  width: calc(fit-content + 50px);
+  padding: 10px 20px;
+  justify-content: space-between;
+}
+.red-color {
+  color: red;
+}
+.blue-color {
+  color: blue;
+}
